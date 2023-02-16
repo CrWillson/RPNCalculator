@@ -7,7 +7,11 @@ import java.util.*;
  * @author Caleb Willson
  */
 public class RpnCalculator {
-    public static void calculate(String input) throws InvalidRPNException {
+    public static double calculate(String input) throws InvalidRPNException {
+        if (input.isEmpty()) {
+            throw new InvalidRPNException("Empty string entered error");
+        }
+        
         Scanner scanner = new Scanner(input);
         Stack<Double> stack = new Stack<>();
         
@@ -69,15 +73,6 @@ public class RpnCalculator {
             throw new InvalidRPNException("Ran out of operators");
         }
         
-        System.out.println("The result is: " + stack.pop());
-    }
-    
-    public static void main(String[] args) {
-        try {
-            calculate("23.3 0 *");
-        }
-        catch (InvalidRPNException e) {
-            System.out.println(e.getMessage());
-        }
+        return stack.pop();
     }
 }

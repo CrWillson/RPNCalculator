@@ -21,23 +21,88 @@ public class RpnCalculatorTest {
      */
     @Test
     public void testCalculate() {
-        System.out.println("calculate");
-        String input = "";
-        RpnCalculator.calculate(input);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class RpnCalculator.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        RpnCalculator.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Calculate \"23.3 5 16.2 + 8 * -\"");
+        String input = "23.3 5 16.2 + 8 * -";
+        //String input = " ";
+        
+        double expected = -146.29999999999998;
+        double output = RpnCalculator.calculate(input);
+        System.out.println("The output is " + output);
+        assertEquals(expected, output);
     }
     
+    @Test
+    public void testInvalidSymbolException() {
+        System.out.println("Calculate \"23.3 12 abc *\"");
+        String input = "23.3 12 abc *";
+        
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
+            RpnCalculator.calculate(input);
+        });
+        
+        String expectedMessage = "Invalid symbol entered";
+        String actualMessage = exception.getMessage();
+        
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+    
+    @Test
+    public void testRanOutDoubleException() {
+        System.out.println("Calculate \"24.5 *\"");
+        String input = "24.5 *";
+        
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
+            RpnCalculator.calculate(input);
+        });
+        
+        String expectedMessage = "Ran out of doubles";
+        String actualMessage = exception.getMessage();
+        
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+    
+    @Test
+    public void testRanOutOperatorException() {
+        System.out.println("Calculate \"24.5 16 5.3 -\"");
+        String input = "24.5 16 5.3 -";
+        
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
+            RpnCalculator.calculate(input);
+        });
+        
+        String expectedMessage = "Ran out of operators";
+        String actualMessage = exception.getMessage();
+        
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+    
+    @Test
+    public void testDivideByZeroException() {
+        System.out.println("Calculate \"24.5 0 /\"");
+        String input = "24.5 0 /";
+        
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
+            RpnCalculator.calculate(input);
+        });
+        
+        String expectedMessage = "Division by zero error";
+        String actualMessage = exception.getMessage();
+        
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+    
+    @Test
+    public void testEmptyStringException() {
+        System.out.println("Calculate \"\"");
+        String input = "";
+        
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
+            RpnCalculator.calculate(input);
+        });
+        
+        String expectedMessage = "Empty string entered error";
+        String actualMessage = exception.getMessage();
+        
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }
