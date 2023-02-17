@@ -17,7 +17,55 @@ public class RpnCalculatorTest {
     
     public RpnCalculatorTest() {
     }
+    
+    /**
+     * Test the + operator
+     */
+    @Test
+    public void testAdd() {
+        String input = "2 3 +";
+        
+        double expected = 5;
+        double output = RpnCalculator.calculate(input);
+        assertEquals(expected, output);
+    }
+    
+    /**
+     * Test the - operator
+     */
+    @Test
+    public void testSubtract() {
+        String input = "5 2 -";
+        
+        double expected = 3;
+        double output = RpnCalculator.calculate(input);
+        assertEquals(expected, output);
+    }
+    
+    /**
+     * Test the * operator
+     */
+    @Test
+    public void testMultiply() {
+        String input = "5 3 *";
 
+        double expected = 15;
+        double output = RpnCalculator.calculate(input);
+        assertEquals(expected, output);
+    }
+    
+    /**
+     * Test the / operator
+     */
+    @Test
+    public void testDivide() {
+        String input = "20 4 /";
+
+        double expected = 5;
+        double output = RpnCalculator.calculate(input);
+        assertEquals(expected, output);
+    }
+    
     /**
      * Test a short calculation
      */
@@ -32,7 +80,7 @@ public class RpnCalculatorTest {
     }
     
     /**
-     * Test a longer calculation
+     * Test a longer calculation with all four operators
      */
     @Test
     public void testLongerCalculate() {
@@ -51,7 +99,7 @@ public class RpnCalculatorTest {
     public void testInvalidSymbolException() {
         String input = "23.3 12 abc *";
         
-        Exception exception = assertThrows(InvalidRPNString.class, () -> {
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
             RpnCalculator.calculate(input);
         });
         
@@ -68,7 +116,7 @@ public class RpnCalculatorTest {
     public void testRanOutDoubleException() {
         String input = "24.5 *";
         
-        Exception exception = assertThrows(InvalidRPNString.class, () -> {
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
             RpnCalculator.calculate(input);
         });
         
@@ -85,7 +133,7 @@ public class RpnCalculatorTest {
     public void testRanOutOperatorException() {
         String input = "24.5 16 5.3 -";
         
-        Exception exception = assertThrows(InvalidRPNString.class, () -> {
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
             RpnCalculator.calculate(input);
         });
         
@@ -102,7 +150,7 @@ public class RpnCalculatorTest {
     public void testDivideByZeroException() {
         String input = "24.5 0 /";
         
-        Exception exception = assertThrows(InvalidRPNString.class, () -> {
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
             RpnCalculator.calculate(input);
         });
         
@@ -119,7 +167,7 @@ public class RpnCalculatorTest {
     public void testEmptyStringException() {
         String input = " ";
         
-        Exception exception = assertThrows(InvalidRPNString.class, () -> {
+        Exception exception = assertThrows(InvalidRPNException.class, () -> {
             RpnCalculator.calculate(input);
         });
         
