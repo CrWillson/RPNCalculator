@@ -8,8 +8,8 @@ package rpn;
  *
  * @author Caleb Willson
  */
-public class InvalidRPNException extends RuntimeException {
-    public InvalidRPNException (String err) {
+public class InvalidRPNString extends RuntimeException {
+    public InvalidRPNString (String err) {
         super(err);
     }
 }

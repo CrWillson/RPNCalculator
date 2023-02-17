@@ -7,10 +7,10 @@ import java.util.*;
  * @author Caleb Willson
  */
 public class RpnCalculator {
-    public static double calculate(String input) throws InvalidRPNException {
-        if (input.isEmpty()) {
-            throw new InvalidRPNException("Empty string entered error");
-        }
+    public static double calculate(String input) throws InvalidRPNString {
+        //if (input.isEmpty()) {
+        //    throw new InvalidRPNString("Empty string entered error");
+        //}
         
         Scanner scanner = new Scanner(input);
         Stack<Double> stack = new Stack<>();
@@ -25,7 +25,7 @@ public class RpnCalculator {
                 if (!("+".equals(symbol) || "-".equals(symbol) ||
                     "*".equals(symbol) || "/".equals(symbol))) {
                     scanner.close();
-                    throw new InvalidRPNException("Invalid symbol entered");
+                    throw new InvalidRPNString("Invalid symbol entered");
                 }
                 
                 double a = 0.0;
@@ -36,7 +36,7 @@ public class RpnCalculator {
                 }
                 catch (EmptyStackException e) {
                     scanner.close();
-                    throw new InvalidRPNException("Ran out of doubles");
+                    throw new InvalidRPNString("Ran out of doubles");
                 }
                 
                 try {
@@ -44,7 +44,7 @@ public class RpnCalculator {
                 }
                 catch (EmptyStackException e) {
                     scanner.close();
-                    throw new InvalidRPNException("Ran out of doubles");
+                    throw new InvalidRPNString("Ran out of doubles");
                 }
                 
                 if ("+".equals(symbol)) {
@@ -59,7 +59,7 @@ public class RpnCalculator {
                 else if ("/".equals(symbol)) {
                     if (b == 0) {
                         scanner.close();
-                        throw new InvalidRPNException("Division by zero error");
+                        throw new InvalidRPNString("Division by zero error");
                     }
                     else {
                         stack.push(a / b);
@@ -70,9 +70,17 @@ public class RpnCalculator {
 
         scanner.close();
         if (stack.size() > 1) {
-            throw new InvalidRPNException("Ran out of operators");
+            throw new InvalidRPNString("Ran out of operators");
         }
         
-        return stack.pop();
+        double result = 0.0;
+        try {
+            result = stack.pop();
+        }
+        catch (EmptyStackException e) {
+            throw new InvalidRPNString("Empty string entered error");
+        }
+        
+        return result;
     }
 }
