@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package rpn;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  *
  * @author Caleb Willson
+ * @version 1.0
+ * File: RpnCalculatorTest.java
+ * Created: 2/16/23
+ * 
+ * JUnit tests for RpnCalculator.java
+ * 
  */
 public class RpnCalculatorTest {
     
@@ -17,7 +19,7 @@ public class RpnCalculatorTest {
     }
 
     /**
-     * Test of calculate method, of class RpnCalculator.
+     * Test a short calculation
      */
     @Test
     public void testCalculate() {
@@ -29,6 +31,9 @@ public class RpnCalculatorTest {
         assertEquals(expected, output);
     }
     
+    /**
+     * Test a longer calculation
+     */
     @Test
     public void testLongerCalculate() {
         String input = "2.7 5 * 4 + 3.5 2.1 * 1 + / 23.3 5 16.2 + 8 * - +";
@@ -39,6 +44,9 @@ public class RpnCalculatorTest {
         assertEquals(expected, output);
     }
     
+    /**
+     * Test if calculate throws when an invalid symbol is given
+     */
     @Test
     public void testInvalidSymbolException() {
         String input = "23.3 12 abc *";
@@ -53,6 +61,9 @@ public class RpnCalculatorTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
     
+    /**
+     * Test if calculate throws when it runs out of doubles
+     */
     @Test
     public void testRanOutDoubleException() {
         String input = "24.5 *";
@@ -67,6 +78,9 @@ public class RpnCalculatorTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
     
+    /**
+     * Test if calculate throws when it runs out of operators
+     */
     @Test
     public void testRanOutOperatorException() {
         String input = "24.5 16 5.3 -";
@@ -81,6 +95,9 @@ public class RpnCalculatorTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
     
+    /**
+     * Test if calculate throws when it divides by zero
+     */
     @Test
     public void testDivideByZeroException() {
         String input = "24.5 0 /";
@@ -95,6 +112,9 @@ public class RpnCalculatorTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
     
+    /**
+     * Test if calculate throws when it is passed an empty string
+     */
     @Test
     public void testEmptyStringException() {
         String input = " ";

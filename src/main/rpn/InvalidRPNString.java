@@ -1,12 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rpn;
 
 /**
  *
  * @author Caleb Willson
+ * @version 1.0
+ * File: InvalidRPNString.java
+ * Created: 2/16/23
+ * 
+ * Exception thrown by RpnCalculator.calculate();
  */
 public class InvalidRPNString extends RuntimeException {
     public InvalidRPNString (String err) {

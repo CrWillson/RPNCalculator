@@ -5,13 +5,20 @@ import java.util.*;
 /**
  *
  * @author Caleb Willson
+ * @version 1.0
+ * File: RpnCalculator.java
+ * Created: 2/16/23
+ * 
+ * Contains one method, calculate, which computes the result of a RPN string.
  */
 public class RpnCalculator {
+    /**
+     * 
+     * @param input
+     * @return result
+     * @throws InvalidRPNString 
+     */
     public static double calculate(String input) throws InvalidRPNString {
-        //if (input.isEmpty()) {
-        //    throw new InvalidRPNString("Empty string entered error");
-        //}
-        
         Scanner scanner = new Scanner(input);
         Stack<Double> stack = new Stack<>();
         
