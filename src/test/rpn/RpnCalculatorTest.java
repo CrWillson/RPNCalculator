@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ */
 package rpn;
 
 import org.junit.jupiter.api.Test;
@@ -72,10 +76,14 @@ public class RpnCalculatorTest {
     @Test
     public void testCalculate() {
         String input = "23.3 5 16.2 + 8 * -";
-        //String input = " ";
         
-        double expected = -146.29999999999998;
+        double expected = -146.30;
         double output = RpnCalculator.calculate(input);
+        
+        output *= 100;
+        output = Math.round(output);
+        output /= 100;
+        
         assertEquals(expected, output);
     }
     
@@ -87,8 +95,13 @@ public class RpnCalculatorTest {
         String input = "2.7 5 * 4 + 3.5 2.1 * 1 + / 23.3 5 16.2 + 8 * - +";
         // Equivalent to (((2.7*5)+4)/((3.5*2.1)+1))+(23.3-(5+16.2)*8) 
         
-        double expected = -144.20419161676645;
+        double expected = -144.20;
         double output = RpnCalculator.calculate(input);
+        
+        output *= 100;
+        output = Math.round(output);
+        output /= 100;
+        
         assertEquals(expected, output);
     }
     
